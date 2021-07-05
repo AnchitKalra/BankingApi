@@ -1,0 +1,7 @@
+bankingservice\service\entity\AccountEntity.class
+bankingservice\service\entity\PersonEntity.class
+bankingservice\service\ServiceConfiguration.class
+bankingservice\service\dao\CustomerDao.class
+bankingservice\service\entity\Type.class
+bankingservice\service\business\CustomerService.class
+bankingservice\service\entity\StatementEntity.class
