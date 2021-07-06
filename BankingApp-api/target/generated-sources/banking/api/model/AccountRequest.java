@@ -13,16 +13,16 @@ import javax.validation.constraints.*;
  * AccountRequest
  */
 @Validated
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.SpringCodegen", date = "2021-07-06T14:02:15.378+05:30")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.SpringCodegen", date = "2021-07-06T15:46:02.975+05:30")
 
 public class AccountRequest   {
   @JsonProperty("account_number")
-  private Integer accountNumber = null;
+  private String accountNumber = null;
 
   @JsonProperty("amount")
   private Integer amount = null;
 
-  public AccountRequest accountNumber(Integer accountNumber) {
+  public AccountRequest accountNumber(String accountNumber) {
     this.accountNumber = accountNumber;
     return this;
   }
@@ -35,11 +35,11 @@ public class AccountRequest   {
   @NotNull
 
 
-  public Integer getAccountNumber() {
+  public String getAccountNumber() {
     return accountNumber;
   }
 
-  public void setAccountNumber(Integer accountNumber) {
+  public void setAccountNumber(String accountNumber) {
     this.accountNumber = accountNumber;
   }
 

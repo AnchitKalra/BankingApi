@@ -19,7 +19,6 @@ import java.util.UUID;
 
 @Controller
 public class PersonController {
-static int accountNumber = 200;
     @Autowired
     CustomerService customerService;
 
@@ -40,13 +39,12 @@ static int accountNumber = 200;
         AccountEntity accountEntity = new AccountEntity();
         accountEntity.setBalance(0);
         accountEntity.setAccountType(Type.SAVING);
-        accountEntity.setUuid(UUID.randomUUID().toString());
-        accountEntity.setAccountNumber(accountNumber++);
+        accountEntity.setAccountNumber(UUID.randomUUID().toString());
 
         final PersonEntity createdCustomerEntity = customerService.saveCustomer(customerEntity);
         accountEntity.setPersonEntity(createdCustomerEntity);
         accountService.createAccount(accountEntity);
-        SignupCustomerResponse customerResponse = new SignupCustomerResponse().id(createdCustomerEntity.getUuid()).status("CUSTOMER SUCCESSFULLY REGISTERED");
+        SignupCustomerResponse customerResponse = new SignupCustomerResponse().id(accountEntity.getAccountNumber()).status("CUSTOMER SUCCESSFULLY REGISTERED");
         return new ResponseEntity(customerResponse, HttpStatus.CREATED);
     }
 }

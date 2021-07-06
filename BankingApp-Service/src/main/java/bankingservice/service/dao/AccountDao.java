@@ -12,7 +12,7 @@ import javax.persistence.PersistenceContext;
 public class AccountDao {
     @PersistenceContext
     private EntityManager entityManager;
-    public AccountEntity getAmount(Integer account) {
+    public AccountEntity getAmount(String account) {
         AccountEntity accountEntity =  entityManager.createNamedQuery("getAmount", AccountEntity.class).setParameter("accountNumber", account).getSingleResult();
        return accountEntity;
     }

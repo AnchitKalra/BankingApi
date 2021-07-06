@@ -12,7 +12,7 @@ public class AccountService {
     @Autowired
     AccountDao accountDao;
     @Transactional(propagation = Propagation.REQUIRED)
-    public AccountEntity getAmount(Integer account) {
+    public AccountEntity getAmount(String account) {
         return accountDao.getAmount(account);
     }
 

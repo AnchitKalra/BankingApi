@@ -20,13 +20,13 @@ public class AccountController {
 
     @RequestMapping(method = RequestMethod.POST, path = "/credit", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public ResponseEntity<AccountResponse> signup(@RequestBody(required = true) AccountRequest accountRequest) {
-        int accountNumber = accountRequest.getAccountNumber();
+        String accountNumber = accountRequest.getAccountNumber();
         AccountEntity entity = accountService.getAmount(accountNumber);
         int totalAmount = accountRequest.getAmount() + entity.getBalance();
         entity.setBalance(totalAmount);
         accountService.creditAmount(entity);
         AccountResponse accountResponse = new AccountResponse();
-        accountResponse.setId(entity.getUuid());
+        accountResponse.setId(entity.getId().toString());
         accountResponse.setStatus("Amount credited");
        return new ResponseEntity<>(accountResponse, HttpStatus.OK);
     }

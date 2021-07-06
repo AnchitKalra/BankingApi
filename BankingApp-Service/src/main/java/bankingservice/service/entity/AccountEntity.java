@@ -15,8 +15,8 @@ import java.io.Serializable;
     @GeneratedValue(strategy = GenerationType.IDENTITY)
    private Integer id;
 
-    @Column(name = "UUID", length = 64, nullable = false)
-    private String uuid;
+    @Column(name = "account_number", length = 64, nullable = false)
+    private String accountNumber;
 
     @Column(name = "account_type")
     private Type accountType;
@@ -24,8 +24,6 @@ import java.io.Serializable;
     @Column(name = "balance")
     private Integer balance;
 
-    @Column(name = "account_number")
-    private Integer accountNumber;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "pid")
@@ -39,12 +37,12 @@ import java.io.Serializable;
         this.id = id;
     }
 
-    public String getUuid() {
-        return uuid;
+    public String getAccountNumber() {
+        return accountNumber;
     }
 
-    public void setUuid(String uuid) {
-        this.uuid = uuid;
+    public void setAccountNumber(String accountNumber) {
+        this.accountNumber = accountNumber;
     }
 
     public Type getAccountType() {
@@ -61,14 +59,6 @@ import java.io.Serializable;
 
     public void setBalance(Integer balance) {
         this.balance = balance;
-    }
-
-    public Integer getAccountNumber() {
-        return accountNumber;
-    }
-
-    public void setAccountNumber(Integer accountNumber) {
-        this.accountNumber = accountNumber;
     }
 
     public PersonEntity getPersonEntity() {

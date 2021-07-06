@@ -140,7 +140,7 @@
       "type": "object",
       "properties": {
         "account_number": {
-          "type": "integer",
+          "type": "string",
           "description": "First name of the new customer"
         },
         "amount": {
