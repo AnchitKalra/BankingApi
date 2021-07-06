@@ -6,14 +6,14 @@ import java.util.Date;
 
 @Entity
 @Table(name = "statement")
-public class StatementEntity {
+public class StatementsEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(name = "UUID", length = 64, nullable = false)
-    private String uuid;
+    @Column(name = "reference_number", length = 64, nullable = false)
+    private String referenceNumber;
 
     @Column(name = "debit")
     private Integer debit;
@@ -24,12 +24,27 @@ public class StatementEntity {
     @Column(name = "date")
     private Date date;
 
+    @Column(name = "balance")
+    private Integer balance;
+
+    @ManyToOne
+    @JoinColumn(name = "aid")
+    private AccountsEntity accountsEntity;
+
     public Integer getId() {
         return id;
     }
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public String getReferenceNumber() {
+        return referenceNumber;
+    }
+
+    public void setReferenceNumber(String referenceNumber) {
+        this.referenceNumber = referenceNumber;
     }
 
     public Integer getDebit() {
@@ -56,11 +71,19 @@ public class StatementEntity {
         this.date = date;
     }
 
-    public String getUuid() {
-        return uuid;
+    public AccountsEntity getAccountsEntity() {
+        return accountsEntity;
     }
 
-    public void setUuid(String uuid) {
-        this.uuid = uuid;
+    public void setAccountsEntity(AccountsEntity accountsEntity) {
+        this.accountsEntity = accountsEntity;
+    }
+
+    public Integer getBalance() {
+        return balance;
+    }
+
+    public void setBalance(Integer balance) {
+        this.balance = balance;
     }
 }

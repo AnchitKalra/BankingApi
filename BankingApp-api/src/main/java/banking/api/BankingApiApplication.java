@@ -1,4 +1,5 @@
 package banking.api;
+
 import bankingservice.service.ServiceConfiguration;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
