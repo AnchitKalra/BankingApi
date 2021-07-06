@@ -4,9 +4,8 @@ import banking.api.model.SignupCustomerRequest;
 import banking.api.model.SignupCustomerResponse;
 import bankingservice.service.business.AccountService;
 import bankingservice.service.business.CustomerService;
-import bankingservice.service.entity.AccountEntity;
+import bankingservice.service.entity.AccountsEntity;
 import bankingservice.service.entity.PersonEntity;
-import bankingservice.service.entity.Type;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -36,10 +35,9 @@ public class PersonController {
         customerEntity.setEmail(signupCustomerRequest.getEmailAddress());
         customerEntity.setPassword(signupCustomerRequest.getPassword());
 
-        AccountEntity accountEntity = new AccountEntity();
+        AccountsEntity accountEntity = new AccountsEntity();
         accountEntity.setBalance(0);
-        accountEntity.setAccountType(Type.SAVING);
-        accountEntity.setAccountNumber(UUID.randomUUID().toString());
+       accountEntity.setAccountNumber(UUID.randomUUID().toString());
 
         final PersonEntity createdCustomerEntity = customerService.saveCustomer(customerEntity);
         accountEntity.setPersonEntity(createdCustomerEntity);

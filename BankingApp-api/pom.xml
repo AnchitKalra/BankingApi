@@ -103,7 +103,7 @@
 
                 <executions>
                     <execution>
-                        <id>customer</id>
+                        <id>person</id>
                         <goals>
                             <goal>generate</goal>
                         </goals>

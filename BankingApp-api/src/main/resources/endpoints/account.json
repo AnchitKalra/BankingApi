@@ -113,12 +113,99 @@
               "type": "string",
               "description": "Used as correlation id while tracing for the request in the backend"
             }
+          }}}}},
+          "/account/transfer": {
+      "x-swagger-router-controller": "api",
+      "post": {
+        "tags": [
+          "API#001 Customer Sign up"
+        ],
+        "operationId": "getAmount",
+        "summary": "signup",
+        "description": "Each customer who needs access to Banking application should signup using their valid contact number, email and set a password for an authorized access.\n",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "AmountRequest",
+            "description": "Request containing customer signup information",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/AmountRequest"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "CREATED - Customer has been signed up successfully",
+            "headers": {
+              "request-id": {
+                "type": "string",
+                "description": "Used as correlation id while tracing for the request in the backend"
+              },
+              "location": {
+                "type": "string",
+                "description": "Location of the new resource which was created by this request"
+              }
+            },
+            "schema": {
+              "$ref": "#/definitions/AmountResponse"
+            }
+          },
+          "400": {
+            "description": "BAD REQUEST - server cannot or will not process the request due to something that is perceived to be a client error (e.g., malformed request syntax, mandatory elements are missing)",
+            "headers": {
+              "request-id": {
+                "type": "string",
+                "description": "Used as correlation id while tracing for the request in the backend"
+              }
+            }
+          },
+          "401": {
+            "description": "UNAUTHORIZED - customer has provided wrong credentials",
+            "headers": {
+              "request-id": {
+                "type": "string",
+                "description": "Used as correlation id while tracing for the request in the backend"
+              }
+            }
+          },
+          "403": {
+            "description": "FORBIDDEN - request has not been applied because client application has no permission to perform action",
+            "headers": {
+              "request-id": {
+                "type": "string",
+                "description": "Used as correlation id while tracing for the request in the backend"
+              }
+            }
+          },
+          "422": {
+            "description": "UNPROCESSABLE ENTITY - request was well-formed but server unable to process due to semantic errors",
+            "headers": {
+              "request-id": {
+                "type": "string",
+                "description": "Used as correlation id while tracing for the request flow to the backend"
+              }
+            }
+          },
+          "500": {
+            "description": "INTERNAL SERVER ERROR - server encountered an unexpected condition that prevented it from fulfilling the request.",
+            "headers": {
+              "request-id": {
+                "type": "string",
+                "description": "Used as correlation id while tracing for the request in the backend"
+              }
+            }
           }
         }
       }
     }
-  }
-},
+  },
   "parameters": {
     "Authorization": {
       "name": "authorization",
@@ -172,7 +259,49 @@
         "example": {
           "id": "2ddf4646-ecd0-11e8-8eb2-f2801f1b9fd1",
           "status": "Amount credited"
-        }
+        }},
+          "AmountRequest": {
+            "type": "object",
+            "properties": {
+              "from_account_number": {
+                "type": "string",
+                "description": "First name of the new customer"
+              },
+              "to_account_number": {
+                "type": "string",
+                "description": "First name of the new customer"
+              },
+              "amount": {
+                "type": "integer",
+                "description": "Last name of the new customer"
+              }
+            },
+            "required": [
+              "from_account_number",
+              "to_account_number",
+              "amount"
+            ]
+          },
+          "AmountResponse": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "description": "uuid of the signed up customer"
+              },
+              "status": {
+                "type": "string",
+                "description": "message showing the status of the signed up customer"
+              }
+            },
+            "required": [
+              "id",
+              "status"
+            ],
+            "example": {
+              "id": "2ddf4646-ecd0-11e8-8eb2-f2801f1b9fd1",
+              "status": "Amount credited"
+            }
       }
     }
   }

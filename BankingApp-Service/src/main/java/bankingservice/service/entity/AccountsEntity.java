@@ -1,7 +1,7 @@
 package bankingservice.service.entity;
 
 import javax.persistence.*;
-import java.io.Serializable;
+
 
 
 @Entity
@@ -9,17 +9,15 @@ import java.io.Serializable;
 @NamedQueries({
         @NamedQuery(name = "getAmount", query = "select a from AccountEntity a where a.accountNumber = :accountNumber")})
 
-                public class AccountEntity implements Serializable {
+                public class AccountsEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
    private Integer id;
 
-    @Column(name = "account_number", length = 64, nullable = false)
-    private String accountNumber;
 
-    @Column(name = "account_type")
-    private Type accountType;
+    @Column(name = "account_number")
+    private String accountNumber;
 
     @Column(name = "balance")
     private Integer balance;
@@ -43,14 +41,6 @@ import java.io.Serializable;
 
     public void setAccountNumber(String accountNumber) {
         this.accountNumber = accountNumber;
-    }
-
-    public Type getAccountType() {
-        return accountType;
-    }
-
-    public void setAccountType(Type accountType) {
-        this.accountType = accountType;
     }
 
     public Integer getBalance() {

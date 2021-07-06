@@ -10,19 +10,19 @@ import javax.validation.Valid;
 import javax.validation.constraints.*;
 
 /**
- * SignupCustomerResponse
+ * AmountResponse
  */
 @Validated
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.SpringCodegen", date = "2021-07-06T18:00:19.631+05:30")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.SpringCodegen", date = "2021-07-06T18:00:20.011+05:30")
 
-public class SignupCustomerResponse   {
+public class AmountResponse   {
   @JsonProperty("id")
   private String id = null;
 
   @JsonProperty("status")
   private String status = null;
 
-  public SignupCustomerResponse id(String id) {
+  public AmountResponse id(String id) {
     this.id = id;
     return this;
   }
@@ -43,7 +43,7 @@ public class SignupCustomerResponse   {
     this.id = id;
   }
 
-  public SignupCustomerResponse status(String status) {
+  public AmountResponse status(String status) {
     this.status = status;
     return this;
   }
@@ -73,9 +73,9 @@ public class SignupCustomerResponse   {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    SignupCustomerResponse signupCustomerResponse = (SignupCustomerResponse) o;
-    return Objects.equals(this.id, signupCustomerResponse.id) &&
-        Objects.equals(this.status, signupCustomerResponse.status);
+    AmountResponse amountResponse = (AmountResponse) o;
+    return Objects.equals(this.id, amountResponse.id) &&
+        Objects.equals(this.status, amountResponse.status);
   }
 
   @Override
@@ -86,7 +86,7 @@ public class SignupCustomerResponse   {
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class SignupCustomerResponse {\n");
+    sb.append("class AmountResponse {\n");
     
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    status: ").append(toIndentedString(status)).append("\n");

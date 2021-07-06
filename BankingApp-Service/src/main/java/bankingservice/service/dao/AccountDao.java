@@ -1,6 +1,6 @@
 package bankingservice.service.dao;
 
-import bankingservice.service.entity.AccountEntity;
+import bankingservice.service.entity.AccountsEntity;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -12,16 +12,16 @@ import javax.persistence.PersistenceContext;
 public class AccountDao {
     @PersistenceContext
     private EntityManager entityManager;
-    public AccountEntity getAmount(String account) {
-        AccountEntity accountEntity =  entityManager.createNamedQuery("getAmount", AccountEntity.class).setParameter("accountNumber", account).getSingleResult();
+    public AccountsEntity getAmount(String account) {
+        AccountsEntity accountEntity =  entityManager.createNamedQuery("getAmount", AccountsEntity.class).setParameter("accountNumber", account).getSingleResult();
        return accountEntity;
     }
     @Transactional(propagation = Propagation.REQUIRED)
-    public void creditAmount(AccountEntity entity) {
+    public void creditAmount(AccountsEntity entity) {
         entityManager.merge(entity);
     }
 
-    public void createAccount(AccountEntity entity) {
+    public void createAccount(AccountsEntity entity) {
         entityManager.persist(entity);
     }
 }
