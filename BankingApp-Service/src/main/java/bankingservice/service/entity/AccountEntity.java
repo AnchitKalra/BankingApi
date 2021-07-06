@@ -1,17 +1,19 @@
 package bankingservice.service.entity;
 
 import javax.persistence.*;
-enum Type
-{
-    SAVING, CURRENT, SALARY;
-}
+import java.io.Serializable;
+
+
 @Entity
 @Table(name = "account")
-public class AccountEntity {
+@NamedQueries({
+        @NamedQuery(name = "getAmount", query = "select a from AccountEntity a where a.accountNumber = :accountNumber")})
+
+                public class AccountEntity implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+   private Integer id;
 
     @Column(name = "UUID", length = 64, nullable = false)
     private String uuid;
@@ -21,6 +23,13 @@ public class AccountEntity {
 
     @Column(name = "balance")
     private Integer balance;
+
+    @Column(name = "account_number")
+    private Integer accountNumber;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "pid")
+    private PersonEntity personEntity;
 
     public Integer getId() {
         return id;
@@ -52,5 +61,21 @@ public class AccountEntity {
 
     public void setBalance(Integer balance) {
         this.balance = balance;
+    }
+
+    public Integer getAccountNumber() {
+        return accountNumber;
+    }
+
+    public void setAccountNumber(Integer accountNumber) {
+        this.accountNumber = accountNumber;
+    }
+
+    public PersonEntity getPersonEntity() {
+        return personEntity;
+    }
+
+    public void setPersonEntity(PersonEntity personEntity) {
+        this.personEntity = personEntity;
     }
 }

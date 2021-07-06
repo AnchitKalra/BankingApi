@@ -10,28 +10,28 @@ import javax.validation.Valid;
 import javax.validation.constraints.*;
 
 /**
- * UpdatePasswordResponse
+ * AccountResponse
  */
 @Validated
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.SpringCodegen", date = "2021-07-06T14:02:14.955+05:30")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.SpringCodegen", date = "2021-07-06T14:02:15.378+05:30")
 
-public class UpdatePasswordResponse   {
+public class AccountResponse   {
   @JsonProperty("id")
   private String id = null;
 
   @JsonProperty("status")
   private String status = null;
 
-  public UpdatePasswordResponse id(String id) {
+  public AccountResponse id(String id) {
     this.id = id;
     return this;
   }
 
   /**
-   * uuid of the customer with updated password
+   * uuid of the signed up customer
    * @return id
   **/
-  @ApiModelProperty(required = true, value = "uuid of the customer with updated password")
+  @ApiModelProperty(required = true, value = "uuid of the signed up customer")
   @NotNull
 
 
@@ -43,16 +43,16 @@ public class UpdatePasswordResponse   {
     this.id = id;
   }
 
-  public UpdatePasswordResponse status(String status) {
+  public AccountResponse status(String status) {
     this.status = status;
     return this;
   }
 
   /**
-   * message showing the status of the customer
+   * message showing the status of the signed up customer
    * @return status
   **/
-  @ApiModelProperty(required = true, value = "message showing the status of the customer")
+  @ApiModelProperty(required = true, value = "message showing the status of the signed up customer")
   @NotNull
 
 
@@ -73,9 +73,9 @@ public class UpdatePasswordResponse   {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    UpdatePasswordResponse updatePasswordResponse = (UpdatePasswordResponse) o;
-    return Objects.equals(this.id, updatePasswordResponse.id) &&
-        Objects.equals(this.status, updatePasswordResponse.status);
+    AccountResponse accountResponse = (AccountResponse) o;
+    return Objects.equals(this.id, accountResponse.id) &&
+        Objects.equals(this.status, accountResponse.status);
   }
 
   @Override
@@ -86,7 +86,7 @@ public class UpdatePasswordResponse   {
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class UpdatePasswordResponse {\n");
+    sb.append("class AccountResponse {\n");
     
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    status: ").append(toIndentedString(status)).append("\n");
