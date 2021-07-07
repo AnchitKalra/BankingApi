@@ -29,7 +29,7 @@ public class AccountController {
 
     Boolean flag = true;
 
-    @RequestMapping(method = RequestMethod.POST, path = "/credit", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    @RequestMapping(method = RequestMethod.PUT, path = "/credit", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public ResponseEntity<AccountResponse> deposit(@RequestBody(required = true) AccountRequest accountRequest) throws Exception{
 
         String accountNumber = accountRequest.getAccountNumber();
@@ -59,7 +59,7 @@ public class AccountController {
     }
 
 
-    @RequestMapping(method = RequestMethod.POST, path = "/debit", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    @RequestMapping(method = RequestMethod.PUT, path = "/debit", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public ResponseEntity<AccountResponse> withdraw(@RequestBody(required = true) AccountRequest accountRequest) throws Exception{
 
         String accountNumber = accountRequest.getAccountNumber();
@@ -91,7 +91,7 @@ public class AccountController {
         return new ResponseEntity<>(accountResponse, HttpStatus.OK);
     }
 
-    @RequestMapping(method = RequestMethod.POST, path = "/transfer", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    @RequestMapping(method = RequestMethod.PUT, path = "/transfer", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public ResponseEntity<AmountResponse> transfer(@RequestBody(required = true) AmountRequest amountRequest) throws Exception{
 
         flag = false;
