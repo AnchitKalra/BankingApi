@@ -4,9 +4,11 @@ io\swagger\configuration\HomeController.class
 banking\api\model\UpdateCustomerRequest.class
 banking\api\model\AmountResponse.class
 banking\api\model\AccountResponse.class
+banking\api\model\AccountList.class
 banking\api\model\ErrorResponse.class
 banking\api\model\StatementList.class
 io\swagger\api\ApiResponseMessage.class
+banking\api\model\GetAccountResponse.class
 banking\api\model\SignupCustomerRequest.class
 banking\api\controller\PersonController.class
 banking\api\model\SignupCustomerResponse.class

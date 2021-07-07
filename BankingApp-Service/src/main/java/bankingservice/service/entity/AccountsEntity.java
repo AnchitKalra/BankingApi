@@ -7,7 +7,8 @@ import javax.persistence.*;
 @Entity
 @Table(name = "account")
 @NamedQueries({
-        @NamedQuery(name = "getAmount", query = "select a from AccountsEntity a where a.accountNumber = :accountNumber")})
+        @NamedQuery(name = "getAmount", query = "select a from AccountsEntity a where a.accountNumber = :accountNumber"),
+        @NamedQuery(name = "getAccounts", query = "select a from AccountsEntity a where a.personEntity = :entity")})
 
                 public class AccountsEntity {
 

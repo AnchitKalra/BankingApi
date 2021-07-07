@@ -1,7 +1,7 @@
 package banking.api.model;
 
 import java.util.Objects;
-import banking.api.model.StatementList;
+import banking.api.model.AccountList;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import io.swagger.annotations.ApiModel;
@@ -13,43 +13,43 @@ import javax.validation.Valid;
 import javax.validation.constraints.*;
 
 /**
- * StatementResponse
+ * GetAccountResponse
  */
 @Validated
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.SpringCodegen", date = "2021-07-07T23:18:28.600+05:30")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.SpringCodegen", date = "2021-07-07T23:18:28.448+05:30")
 
-public class StatementResponse   {
-  @JsonProperty("statement")
+public class GetAccountResponse   {
+  @JsonProperty("accountList")
   @Valid
-  private List<StatementList> statement = null;
+  private List<AccountList> accountList = null;
 
-  public StatementResponse statement(List<StatementList> statement) {
-    this.statement = statement;
+  public GetAccountResponse accountList(List<AccountList> accountList) {
+    this.accountList = accountList;
     return this;
   }
 
-  public StatementResponse addStatementItem(StatementList statementItem) {
-    if (this.statement == null) {
-      this.statement = new ArrayList<>();
+  public GetAccountResponse addAccountListItem(AccountList accountListItem) {
+    if (this.accountList == null) {
+      this.accountList = new ArrayList<>();
     }
-    this.statement.add(statementItem);
+    this.accountList.add(accountListItem);
     return this;
   }
 
   /**
-   * Get statement
-   * @return statement
+   * Get accountList
+   * @return accountList
   **/
   @ApiModelProperty(value = "")
 
   @Valid
 
-  public List<StatementList> getStatement() {
-    return statement;
+  public List<AccountList> getAccountList() {
+    return accountList;
   }
 
-  public void setStatement(List<StatementList> statement) {
-    this.statement = statement;
+  public void setAccountList(List<AccountList> accountList) {
+    this.accountList = accountList;
   }
 
 
@@ -61,21 +61,21 @@ public class StatementResponse   {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    StatementResponse statementResponse = (StatementResponse) o;
-    return Objects.equals(this.statement, statementResponse.statement);
+    GetAccountResponse getAccountResponse = (GetAccountResponse) o;
+    return Objects.equals(this.accountList, getAccountResponse.accountList);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(statement);
+    return Objects.hash(accountList);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class StatementResponse {\n");
+    sb.append("class GetAccountResponse {\n");
     
-    sb.append("    statement: ").append(toIndentedString(statement)).append("\n");
+    sb.append("    accountList: ").append(toIndentedString(accountList)).append("\n");
     sb.append("}");
     return sb.toString();
   }

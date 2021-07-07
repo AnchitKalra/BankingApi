@@ -10,40 +10,62 @@ import javax.validation.Valid;
 import javax.validation.constraints.*;
 
 /**
- * AmountResponse
+ * AccountList
  */
 @Validated
 @javax.annotation.Generated(value = "io.swagger.codegen.languages.SpringCodegen", date = "2021-07-07T23:18:28.448+05:30")
 
-public class AmountResponse   {
-  @JsonProperty("id")
-  private String id = null;
+public class AccountList   {
+  @JsonProperty("accountNumber")
+  private String accountNumber = null;
+
+  @JsonProperty("balance")
+  private Integer balance = null;
 
   @JsonProperty("status")
   private String status = null;
 
-  public AmountResponse id(String id) {
-    this.id = id;
+  public AccountList accountNumber(String accountNumber) {
+    this.accountNumber = accountNumber;
     return this;
   }
 
   /**
-   * uuid of the signed up customer
-   * @return id
+   * message showing the status of the signed up customer
+   * @return accountNumber
   **/
-  @ApiModelProperty(required = true, value = "uuid of the signed up customer")
-  @NotNull
+  @ApiModelProperty(value = "message showing the status of the signed up customer")
 
 
-  public String getId() {
-    return id;
+  public String getAccountNumber() {
+    return accountNumber;
   }
 
-  public void setId(String id) {
-    this.id = id;
+  public void setAccountNumber(String accountNumber) {
+    this.accountNumber = accountNumber;
   }
 
-  public AmountResponse status(String status) {
+  public AccountList balance(Integer balance) {
+    this.balance = balance;
+    return this;
+  }
+
+  /**
+   * message showing the status of the signed up customer
+   * @return balance
+  **/
+  @ApiModelProperty(value = "message showing the status of the signed up customer")
+
+
+  public Integer getBalance() {
+    return balance;
+  }
+
+  public void setBalance(Integer balance) {
+    this.balance = balance;
+  }
+
+  public AccountList status(String status) {
     this.status = status;
     return this;
   }
@@ -73,22 +95,24 @@ public class AmountResponse   {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    AmountResponse amountResponse = (AmountResponse) o;
-    return Objects.equals(this.id, amountResponse.id) &&
-        Objects.equals(this.status, amountResponse.status);
+    AccountList accountList = (AccountList) o;
+    return Objects.equals(this.accountNumber, accountList.accountNumber) &&
+        Objects.equals(this.balance, accountList.balance) &&
+        Objects.equals(this.status, accountList.status);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, status);
+    return Objects.hash(accountNumber, balance, status);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class AmountResponse {\n");
+    sb.append("class AccountList {\n");
     
-    sb.append("    id: ").append(toIndentedString(id)).append("\n");
+    sb.append("    accountNumber: ").append(toIndentedString(accountNumber)).append("\n");
+    sb.append("    balance: ").append(toIndentedString(balance)).append("\n");
     sb.append("    status: ").append(toIndentedString(status)).append("\n");
     sb.append("}");
     return sb.toString();

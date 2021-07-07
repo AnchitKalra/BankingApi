@@ -1,9 +1,6 @@
 package banking.api.controller;
 
-import banking.api.model.AccountRequest;
-import banking.api.model.AccountResponse;
-import banking.api.model.AmountRequest;
-import banking.api.model.AmountResponse;
+import banking.api.model.*;
 import bankingservice.service.business.AccountService;
 import bankingservice.service.business.CustomerService;
 import bankingservice.service.business.StatementService;
@@ -20,7 +17,9 @@ import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.UUID;
 
 @Controller
@@ -118,4 +117,40 @@ public class AccountController {
         amountResponse.setStatus("Amount Successfully transferred");
         return new ResponseEntity<>(amountResponse, HttpStatus.OK);
     }
+
+    @RequestMapping(method = RequestMethod.POST, path = "/addAccount", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public ResponseEntity<AccountResponse> addAccount( @RequestHeader("authorization") final String authorization) throws Exception {
+        String access_token = authorization.split("Bearer ")[1];
+        PersonEntity customerEntity = customerService.getCustomer(access_token);
+        AccountsEntity accountsEntity = new AccountsEntity();
+        accountsEntity.setPersonEntity(customerEntity);
+        accountsEntity.setAccountNumber(UUID.randomUUID().toString());
+        accountsEntity.setBalance(0);
+        accountService.createAccount(accountsEntity);
+        AccountResponse accountResponse = new AccountResponse();
+        accountResponse.setId(accountsEntity.getAccountNumber());
+        accountResponse.setStatus("Account Created");
+        return new ResponseEntity<>(accountResponse, HttpStatus.CREATED);
+    }
+    @RequestMapping(method = RequestMethod.GET, path = "/getAccount", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public ResponseEntity<GetAccountResponse> getAccounts(@RequestHeader("authorization") final String authorization) throws Exception {
+        String access_token = authorization.split("Bearer ")[1];
+        PersonEntity customerEntity = customerService.getCustomer(access_token);
+        List<AccountsEntity> list;
+        list = accountService.getAccounts(customerEntity);
+        List<AccountList> l2 = new ArrayList<>();
+        for (AccountsEntity entity : list) {
+            AccountList l = new AccountList();
+            l.setAccountNumber(entity.getAccountNumber());
+            l.setBalance(entity.getBalance());
+            l.setStatus("Active");
+            l2.add(l);
+        }
+        GetAccountResponse getAccountResponse = new GetAccountResponse();
+        getAccountResponse.setAccountList(l2);
+
+        return new ResponseEntity<>(getAccountResponse, HttpStatus.OK);
+    }
+
+
 }
