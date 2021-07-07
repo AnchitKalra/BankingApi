@@ -1,10 +1,13 @@
+bankingservice\service\entity\CustomerAuthEntity.class
 bankingservice\service\entity\PersonEntity.class
 bankingservice\service\ServiceConfiguration.class
 bankingservice\service\dao\CustomerDao.class
 bankingservice\service\dao\AccountDao.class
 bankingservice\service\dao\StatementDao.class
-bankingservice\service\business\AccountService.class
 bankingservice\service\business\CustomerService.class
+bankingservice\service\business\JwtTokenProvider.class
+bankingservice\service\business\PasswordCryptographyProvider.class
+bankingservice\service\business\AccountService.class
 bankingservice\service\business\StatementService.class
 bankingservice\service\entity\StatementsEntity.class
 bankingservice\service\entity\AccountsEntity.class
