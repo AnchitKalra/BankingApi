@@ -57,4 +57,28 @@ public class CustomerService {
         }
     }
 
+    public void authorization(String access_token) throws Exception {
+
+        CustomerAuthEntity customerAuthEntity = customerDao.getCustomerAuthByAccesstoken(access_token);
+
+        if (customerAuthEntity == null) {
+            throw new Exception("Customer is not Logged in.");
+        }
+
+        if (customerAuthEntity.getLogoutAt() != null) {
+            throw new Exception("Customer is logged out. Log in again to access this endpoint.");
+        }
+
+        if (ZonedDateTime.now().isAfter(customerAuthEntity.getExpiresAt())) {
+            throw new Exception("Your session is expired. Log in again to access this endpoint.");
+        }
+    }
+
+    public PersonEntity getCustomer(String access_token) throws Exception {
+
+        authorization(access_token);
+        CustomerAuthEntity customerAuthEntity = customerDao.getCustomerAuthByAccesstoken(access_token);
+        return customerAuthEntity.getCustomer();
+    }
+
 }

@@ -5,8 +5,10 @@ import banking.api.model.AccountResponse;
 import banking.api.model.AmountRequest;
 import banking.api.model.AmountResponse;
 import bankingservice.service.business.AccountService;
+import bankingservice.service.business.CustomerService;
 import bankingservice.service.business.StatementService;
 import bankingservice.service.entity.AccountsEntity;
+import bankingservice.service.entity.PersonEntity;
 import bankingservice.service.entity.StatementsEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -14,6 +16,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -26,12 +29,15 @@ public class AccountController {
     AccountService accountService;
     @Autowired
     StatementService statementService;
+    @Autowired
+    CustomerService customerService;
 
     Boolean flag = true;
 
     @RequestMapping(method = RequestMethod.PUT, path = "/credit", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public ResponseEntity<AccountResponse> deposit(@RequestBody(required = true) AccountRequest accountRequest) throws Exception{
-
+    public ResponseEntity<AccountResponse> deposit(@RequestBody(required = true) AccountRequest accountRequest,  @RequestHeader("authorization") final String authorization) throws Exception{
+        String access_token = authorization.split("Bearer ")[1];
+        PersonEntity customerEntity = customerService.getCustomer(access_token);
         String accountNumber = accountRequest.getAccountNumber();
         AccountsEntity entity = accountService.getAmount(accountNumber);
         if(accountRequest.getAmount() <= 0 ) {
@@ -60,8 +66,9 @@ public class AccountController {
 
 
     @RequestMapping(method = RequestMethod.PUT, path = "/debit", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public ResponseEntity<AccountResponse> withdraw(@RequestBody(required = true) AccountRequest accountRequest) throws Exception{
-
+    public ResponseEntity<AccountResponse> withdraw(@RequestBody(required = true) AccountRequest accountRequest,  @RequestHeader("authorization") final String authorization) throws Exception{
+        String access_token = authorization.split("Bearer ")[1];
+        PersonEntity customerEntity = customerService.getCustomer(access_token);
         String accountNumber = accountRequest.getAccountNumber();
         AccountsEntity entity = accountService.getAmount(accountNumber);
         if(accountRequest.getAmount() <= 0 ) {
@@ -92,18 +99,19 @@ public class AccountController {
     }
 
     @RequestMapping(method = RequestMethod.PUT, path = "/transfer", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public ResponseEntity<AmountResponse> transfer(@RequestBody(required = true) AmountRequest amountRequest) throws Exception{
-
+    public ResponseEntity<AmountResponse> transfer(@RequestBody(required = true) AmountRequest amountRequest,  @RequestHeader("authorization") final String authorization) throws Exception{
+        String access_token = authorization.split("Bearer ")[1];
+        PersonEntity customerEntity = customerService.getCustomer(access_token);
         flag = false;
         AccountRequest accountRequest = new AccountRequest();
         accountRequest.setAccountNumber(amountRequest.getFromAccountNumber());
         accountRequest.setAmount(amountRequest.getAmount());
-        withdraw(accountRequest);
+        withdraw(accountRequest, authorization);
 
         String accountNumber = amountRequest.getToAccountNumber();
         accountRequest.setAccountNumber(accountNumber);
         accountRequest.setAmount(amountRequest.getAmount());
-        deposit(accountRequest);
+        deposit(accountRequest, authorization);
 
         AmountResponse amountResponse = new AmountResponse();
         amountResponse.setId(amountRequest.getFromAccountNumber());

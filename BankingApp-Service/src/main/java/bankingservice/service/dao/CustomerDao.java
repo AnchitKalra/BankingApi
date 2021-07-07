@@ -35,4 +35,13 @@ public class CustomerDao {
             return null;
         }
     }
+
+    public CustomerAuthEntity getCustomerAuthByAccesstoken(String accesstoken) {
+        try {
+            return entityManager.createNamedQuery("customerAuthByAccesstoken", CustomerAuthEntity.class).setParameter("accesstoken", accesstoken).getSingleResult();
+        } catch (NoResultException nre) {
+            return null;
+        }
+    }
+
 }
