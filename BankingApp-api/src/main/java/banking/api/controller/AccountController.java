@@ -90,6 +90,7 @@ public class AccountController {
         accountResponse.setStatus("Amount debited");
         return new ResponseEntity<>(accountResponse, HttpStatus.OK);
     }
+
     @RequestMapping(method = RequestMethod.POST, path = "/transfer", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public ResponseEntity<AmountResponse> transfer(@RequestBody(required = true) AmountRequest amountRequest) throws Exception{
 
@@ -109,8 +110,4 @@ public class AccountController {
         amountResponse.setStatus("Amount Successfully transferred");
         return new ResponseEntity<>(amountResponse, HttpStatus.OK);
     }
-
-
-
-
 }

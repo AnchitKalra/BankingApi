@@ -5,6 +5,7 @@ banking\api\model\UpdateCustomerRequest.class
 banking\api\model\AmountResponse.class
 banking\api\model\AccountResponse.class
 banking\api\model\ErrorResponse.class
+banking\api\model\StatementList.class
 io\swagger\api\ApiResponseMessage.class
 banking\api\model\SignupCustomerRequest.class
 banking\api\controller\PersonController.class
@@ -17,10 +18,12 @@ banking\api\controller\AccountController.class
 banking\api\BankingApiApplication.class
 banking\api\model\AccountRequest.class
 banking\api\model\UpdatePasswordRequest.class
+banking\api\model\StatementResponse.class
 io\swagger\api\NotFoundException.class
 banking\api\model\UpdateCustomerResponse.class
 io\swagger\RFC3339DateFormat.class
 banking\api\model\LoginResponse.class
 banking\api\model\UpdatePasswordResponse.class
 io\swagger\api\ApiException.class
+banking\api\controller\StatementController.class
 io\swagger\configuration\SwaggerDocumentationConfig.class

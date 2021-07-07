@@ -6,6 +6,8 @@ import java.util.Date;
 
 @Entity
 @Table(name = "statement")
+@NamedQueries({
+        @NamedQuery(name = "getStatements", query = "select s from StatementsEntity s where s.accountsEntity = :aid")})
 public class StatementsEntity {
 
     @Id
