@@ -17,7 +17,7 @@ public class StatementDao {
     @PersistenceContext
     EntityManager entityManager;
 
-    @Transactional(propagation = Propagation.REQUIRED)
+
     public void addStatement(StatementsEntity statementEntity) {
         entityManager.persist(statementEntity);
     }
