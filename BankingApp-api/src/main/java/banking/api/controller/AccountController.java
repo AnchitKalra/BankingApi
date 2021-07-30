@@ -29,7 +29,7 @@ public class AccountController {
     @Autowired
     CustomerService customerService;
 
-    Boolean flag = true;
+
 
     @RequestMapping(method = RequestMethod.PUT, path = "/credit", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public ResponseEntity<AccountResponse> deposit(@RequestBody(required = true) AccountRequest accountRequest,  @RequestHeader("authorization") final String authorization) throws Exception{
@@ -44,7 +44,7 @@ public class AccountController {
         entity.setBalance(totalAmount);
         accountService.creditAmount(entity);
 
-        if(flag) {
+
             StatementsEntity statementEntity = new StatementsEntity();
             statementEntity.setAccountsEntity(entity);
             statementEntity.setBalance(totalAmount);
@@ -53,7 +53,7 @@ public class AccountController {
             statementEntity.setDebit(0);
             statementEntity.setDate(new Date());
             statementService.addStatement(statementEntity);
-        }
+
 
         AccountResponse accountResponse = new AccountResponse();
         accountResponse.setId(entity.getId().toString());
@@ -99,7 +99,6 @@ public class AccountController {
     public ResponseEntity<AmountResponse> transfer(@RequestBody(required = true) AmountRequest amountRequest,  @RequestHeader("authorization") final String authorization) throws Exception{
         String access_token = authorization.split("Bearer ")[1];
         PersonEntity customerEntity = customerService.getCustomer(access_token);
-        flag = false;
         AccountRequest accountRequest = new AccountRequest();
         accountRequest.setAccountNumber(amountRequest.getFromAccountNumber());
         accountRequest.setAmount(amountRequest.getAmount());
